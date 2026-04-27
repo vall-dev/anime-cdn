@@ -102,3 +102,9 @@ Waifu.bicara('Teks baris 1', 'Teks baris 2', 'OPT:nama_menu');
 ```
 ---
 ### DEMO
+LINK : https://vall-dev.github.io/anime-cdn/
+
+IMAGE
+---
+<img src="https://vall-dev.github.io/anime-cdn/image.png" width="100%"></img>
+---
