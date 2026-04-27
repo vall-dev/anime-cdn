@@ -44,7 +44,7 @@ const config = {
 Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack atau layanan CDN lainnya.
 
 ```html
-<script src="autoload.js"></script>
+<script src="[autoload.js](https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js)"></script>
 ```
 
 ## Contoh Implementasi Lengkap
@@ -77,7 +77,7 @@ Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack ata
             }
         };
     </script>
-    <script src="autoload.js"></script>
+    <script src="[autoload.js](https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js)"></script>
 </body>
 </html>
 ```
@@ -101,8 +101,4 @@ Gunakan fungsi di bawah ini untuk memanggil asisten secara manual melalui JavaSc
 Waifu.bicara('Teks baris 1', 'Teks baris 2', 'OPT:nama_menu');
 ```
 ---
-**Penjelasan README:**
-1.  **Badges**: Bagian atas menggunakan Shields.io sebagai pengganti emoji agar terlihat seperti repositori profesional.
-2.  **Struktur**: Dimulai dari pengenalan, cara pakai, hingga contoh kode lengkap yang bisa langsung dicoba (copy-paste).
-3.  **Tabel**: Berisi daftar variabel agar orang yang mendownload CDN kamu tahu bagian mana saja yang boleh diubah.
-4.  **Tanpa Keterangan Kode**: Semua blok kode di dalam README bersih dari komentar (`//` atau `#`) agar rapi saat disalin ke editor.
+### DEMO
