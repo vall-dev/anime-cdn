@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Assistant CDN</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f2f5;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .demo-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 400px;
+        }
+        .btn-test {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-test:hover {
+            background: #ff6b81;
+            transform: scale(1.05);
+        }
+        #as-wrap { position: fixed; bottom: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 999999; font-family: 'Kalam', cursive; }
+        #as-char { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scale(1); transform-origin: bottom center; max-height: 400px; opacity: 0; filter: brightness(50%); transition: opacity 0.5s ease-out, filter 0.4s; }
+        #as-char.muncul { opacity: 1; }
+        #as-char.bicara { filter: brightness(100%); }
+        #as-char.kedut { animation: as-loncat 0.4s ease-out; }
+        @keyframes as-loncat { 
+            0%, 100% { transform: translateX(-50%) translateY(0) scale(1, 1); } 
+            50% { transform: translateX(-50%) translateY(-35px) scale(0.95, 1.05); } 
+        }
+        #as-box { position: absolute; bottom: 30px; left: 50%; transform: translate(-50%, 20px); width: 90%; max-width: 550px; background: #fff; border: 3px solid #222; border-radius: 12px; padding: 15px; display: none; opacity: 0; transition: 0.3s; pointer-events: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.15); align-items: center; gap: 15px; }
+        #as-box.active { display: flex; }
+        #as-box.show { opacity: 1; transform: translate(-50%, 0); }
+        #as-ava-wrap { width: 70px; height: 70px; border: 2px solid #222; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+        #as-ava { width: 100%; height: 100%; object-fit: cover; }
+        #as-text-wrap { flex: 1; min-width: 0; }
+        #as-text { font-size: 18px; color: #222; min-height: 30px; white-space: pre-wrap; word-break: break-word; }
+        #as-btns { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .as-btn { background: #fff; border: 2px solid #222; padding: 4px 12px; border-radius: 5px; font-family: 'Kalam'; font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 2px 2px 0 #222; }
+        .as-btn:hover { background: #f0f0f0; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 #222; }
+        #as-next { position: absolute; bottom: 10px; right: 15px; font-size: 14px; display: none; animation: bnc 0.8s infinite; }
+        @keyframes bnc { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    </style>
+</head>
+<body>
+
+    <div class="demo-card">
+        <h1>Efek Kedut Sekali</h1>
+        <p>Demo Anime CDN</p>
+        <button class="btn-test" onclick="Waifu.bicara('Halo!', 'Coba klik tombol bro.', 'OPT:menu')">
+            Tes anime
+        </button>
+    </div>
+
+    <script>
+        const config = {
+            gambarKarakter: 'https://img.itch.zone/aW1nLzMyMTk5NTUucG5n/original/CVokFu.png',
+            gambarAvatar: 'https://files.catbox.moe/k9d9m9.gif',
+            tautanFont: 'https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap',
+            pesanDiam: ["Hmph!", "Kok diam saja?", "Oii!", "Lagi apa?"],
+            pesanSalin: ["Jangan disalin!", "Punya aku itu!", "Hei, jangan nakal!"],
+            daftarPilihan: {
+                'menu': [
+                    { text: "Mantap!", next: ["Sip!", "CLOSE"] },
+                    { text: "Batal", next: ["Yakin mau batal nih?", "OPT:konfirmasi"] }
+                ],
+                'konfirmasi': [
+                    { text: "Iya", next: ["Ya sudah kalau mau pergi.", "Dahhh!", "CLOSE"] },
+                    { text: "Enggak", next: ["Bagus deh!", "Ada yang bisa aku bantu lagi?", "OPT:menu"] }
+                ]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js"></script>
+</body>
+</html>
