@@ -1,4 +1,4 @@
-```markdown
+
 # Anime Assistant CDN
 
 ![Versi](https://img.shields.io/badge/version-1.3.0-blue)
@@ -41,7 +41,7 @@ const config = {
 Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack atau layanan CDN lainnya.
 
 ```html
-<script src="[https://raw.githack.com/vall-dev/anime-cdn/1.3.0/main.js](https://raw.githack.com/vall-dev/anime-cdn/1.3.0/main.js)"></script>
+<script src=""></script>
 ```
 
 ## Contoh Implementasi Lengkap
@@ -74,7 +74,7 @@ Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack ata
             }
         };
     </script>
-    <script src="[https://raw.githack.com/vall-dev/anime-cdn/1.3.0/main.js](https://raw.githack.com/vall-dev/anime-cdn/1.3.0/main.js)"></script>
+    <script src=""></script>
 </body>
 </html>
 ```
@@ -97,10 +97,7 @@ Gunakan fungsi di bawah ini untuk memanggil asisten secara manual melalui JavaSc
 ```javascript
 Waifu.bicara('Teks baris 1', 'Teks baris 2', 'OPT:nama_menu');
 ```
-```
-
 ---
-
 **Penjelasan README:**
 1.  **Badges**: Bagian atas menggunakan Shields.io sebagai pengganti emoji agar terlihat seperti repositori profesional.
 2.  **Struktur**: Dimulai dari pengenalan, cara pakai, hingga contoh kode lengkap yang bisa langsung dicoba (copy-paste).
