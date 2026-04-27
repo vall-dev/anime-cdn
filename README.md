@@ -44,7 +44,7 @@ const config = {
 Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack atau layanan CDN lainnya.
 
 ```html
-<script src="[autoload.js](https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js)"></script>
+<script src="https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js"></script>
 ```
 
 ## Contoh Implementasi Lengkap
@@ -77,7 +77,7 @@ Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack ata
             }
         };
     </script>
-    <script src="[autoload.js](https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js)"></script>
+    <script src="https://cdn.jsdelivr.net/gh/vall-dev/anime-cdn@1.3.0/autoload.js"></script>
 </body>
 </html>
 ```
