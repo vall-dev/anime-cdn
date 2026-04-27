@@ -1,3 +1,6 @@
+<img src="https://i.pinimg.com/736x/ba/03/48/ba034879d52aebfd922a36811472e57b.jpg"></img>
+
+
 
 # Anime Assistant CDN
 
@@ -41,7 +44,7 @@ const config = {
 Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack atau layanan CDN lainnya.
 
 ```html
-<script src=""></script>
+<script src="autoload.js"></script>
 ```
 
 ## Contoh Implementasi Lengkap
@@ -74,7 +77,7 @@ Setelah konfigurasi di atas, panggil skrip utama menggunakan layanan Githack ata
             }
         };
     </script>
-    <script src=""></script>
+    <script src="autoload.js"></script>
 </body>
 </html>
 ```
