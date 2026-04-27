@@ -6,10 +6,10 @@
 
     const style = document.createElement('style');
     style.innerHTML = `
-        #ad-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
-        #ad-char { max-height: 350px; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; margin-bottom: -10px; }
-        #ad-box { width: 90%; max-width: 600px; background: #fff; border: 3px solid #222; border-radius: 8px; padding: 15px; display: flex; gap: 15px; opacity: 0; transform: translateY(20px); transition: all 0.3s ease; font-family: 'Kalam', cursive; position: relative; margin-bottom: 25px; pointer-events: auto; box-sizing: border-box; }
-        #ad-box.show { opacity: 1; transform: translateY(0); }
+        #ad-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 9999; }
+        #ad-char { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); max-height: 400px; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+        #ad-box { position: absolute; bottom: 30px; left: 50%; width: 90%; max-width: 600px; background: #fff; border: 3px solid #222; border-radius: 8px; padding: 15px; display: flex; gap: 15px; opacity: 0; transform: translate(-50%, 20px); transition: all 0.3s ease; font-family: 'Kalam', cursive; pointer-events: auto; box-sizing: border-box; z-index: 10000; }
+        #ad-box.show { opacity: 1; transform: translate(-50%, 0); }
         #ad-box::after { content: ''; position: absolute; width: 15px; height: 3px; background: #222; bottom: 5px; right: 5px; transform: rotate(-10deg); }
         #ad-avatar-wrap { width: 70px; height: 70px; border: 2px solid #222; flex-shrink: 0; padding: 2px; background: #fff; }
         #ad-avatar { width: 100%; height: 100%; object-fit: cover; }
@@ -29,7 +29,7 @@
     
     const charImg = document.createElement('img');
     charImg.id = 'ad-char';
-    charImg.src = 'https://steamuserimages-a.akamaihd.net/ugc/1016066330810891179/351BFE13B7076BB0641B91287296E13005D9F250/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
+    charImg.src = 'https://i.imgur.com/uGzH8w1.png';
     
     const box = document.createElement('div');
     box.id = 'ad-box';
