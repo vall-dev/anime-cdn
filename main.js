@@ -7,18 +7,20 @@
     const style = document.createElement('style');
     style.innerHTML = `
         #ad-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
-        #ad-char { max-height: 300px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
-        #ad-box { width: 90%; max-width: 600px; background: #fff; border: 3px solid #222; border-radius: 8px; padding: 15px; display: flex; gap: 15px; opacity: 0; transition: opacity 0.3s ease; font-family: 'Kalam', cursive; position: relative; margin-bottom: 20px; pointer-events: auto; }
+        #ad-char { max-height: 350px; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; margin-bottom: -10px; }
+        #ad-box { width: 90%; max-width: 600px; background: #fff; border: 3px solid #222; border-radius: 8px; padding: 15px; display: flex; gap: 15px; opacity: 0; transform: translateY(20px); transition: all 0.3s ease; font-family: 'Kalam', cursive; position: relative; margin-bottom: 25px; pointer-events: auto; box-sizing: border-box; }
+        #ad-box.show { opacity: 1; transform: translateY(0); }
         #ad-box::after { content: ''; position: absolute; width: 15px; height: 3px; background: #222; bottom: 5px; right: 5px; transform: rotate(-10deg); }
-        #ad-avatar-wrap { width: 60px; height: 60px; border: 2px solid #222; flex-shrink: 0; padding: 2px; }
+        #ad-avatar-wrap { width: 70px; height: 70px; border: 2px solid #222; flex-shrink: 0; padding: 2px; background: #fff; }
         #ad-avatar { width: 100%; height: 100%; object-fit: cover; }
-        #ad-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-        #ad-text { font-size: 16px; color: #222; min-height: 48px; }
-        #ad-options { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
-        .ad-btn { font-family: 'Kalam', cursive; font-weight: 700; border: 2px solid #222; border-radius: 6px; background: #fefefe; color: #222; padding: 4px 12px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
-        .ad-btn:hover { background: rgba(0,0,0,0.05); }
+        #ad-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+        #ad-text { font-size: 17px; color: #222; min-height: 50px; line-height: 1.4; word-wrap: break-word; }
+        #ad-options { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+        .ad-btn { font-family: 'Kalam', cursive; font-weight: 700; border: 2px solid #222; border-radius: 6px; background: #fefefe; color: #222; padding: 5px 14px; cursor: pointer; transition: all 0.2s; position: relative; font-size: 14px; }
+        .ad-btn:hover { background: #f0f0f0; transform: translateY(-1px); }
         .ad-btn::after { content: ''; position: absolute; width: 10px; height: 2px; background: #222; bottom: 3px; right: 3px; transform: rotate(-10deg); }
-        #ad-arrow { position: absolute; bottom: 10px; right: 15px; cursor: pointer; display: none; font-size: 20px; font-weight: bold; }
+        #ad-arrow { position: absolute; bottom: 10px; right: 15px; cursor: pointer; display: none; font-size: 18px; animation: ad-bounce 0.8s infinite; }
+        @keyframes ad-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     `;
     document.head.appendChild(style);
 
@@ -50,7 +52,7 @@
     
     const arrow = document.createElement('div');
     arrow.id = 'ad-arrow';
-    arrow.innerHTML = 'v';
+    arrow.innerHTML = '▼';
     
     box.appendChild(avatarWrap);
     box.appendChild(content);
@@ -78,21 +80,22 @@
 
     function resetIdle() {
         clearTimeout(idleTimer);
-        if (box.style.opacity !== '1') {
-            idleTimer = setTimeout(() => playDialog(idleScript[Math.floor(Math.random() * idleScript.length)]), 10000);
+        if (!box.classList.contains('show')) {
+            idleTimer = setTimeout(() => playDialog(idleScript[Math.floor(Math.random() * idleScript.length)]), 15000);
         }
     }
 
     function playDialog(...msgs) {
+        if (box.classList.contains('show')) return;
         let script = msgs.filter(m => typeof m === 'string');
-        if (script.length === 0 || box.style.opacity === '1') return;
+        if (script.length === 0) return;
         activeScript = script;
         currentIndex = 0;
         charImg.style.opacity = '1';
         setTimeout(() => {
-            box.style.opacity = '1';
+            box.classList.add('show');
             renderNext();
-        }, 300);
+        }, 400);
     }
 
     function renderNext() {
@@ -137,31 +140,39 @@
             if (i < txt.length) {
                 textDiv.innerText += txt.charAt(i);
                 i++;
-                typeTimeout = setTimeout(typeChar, 30);
+                typeTimeout = setTimeout(typeChar, 35);
             } else {
                 isTyping = false;
-                arrow.style.display = 'block';
+                if (currentIndex < activeScript.length - 1 && !activeScript[currentIndex + 1].startsWith("OPT:")) {
+                    arrow.style.display = 'block';
+                }
             }
         }
         typeChar();
     }
 
     function closeDialog() {
-        box.style.opacity = '0';
-        charImg.style.opacity = '0';
+        box.classList.remove('show');
+        setTimeout(() => {
+            charImg.style.opacity = '0';
+            textDiv.innerText = '';
+            optionsDiv.innerHTML = '';
+        }, 300);
         activeScript = [];
         currentIndex = 0;
         isTyping = false;
         resetIdle();
     }
 
-    box.addEventListener('click', () => {
+    box.addEventListener('click', (e) => {
         if (optionsDiv.children.length > 0) return;
         if (isTyping) {
             clearTimeout(typeTimeout);
             isTyping = false;
             textDiv.innerText = activeScript[currentIndex];
-            arrow.style.display = 'block';
+            if (currentIndex < activeScript.length - 1 && !activeScript[currentIndex + 1].startsWith("OPT:")) {
+                arrow.style.display = 'block';
+            }
         } else {
             currentIndex++;
             renderNext();
@@ -169,6 +180,7 @@
     });
 
     document.addEventListener('contextmenu', (e) => {
+        if (box.classList.contains('show')) return;
         e.preventDefault();
         playDialog(contextScript[Math.floor(Math.random() * contextScript.length)]);
     });
